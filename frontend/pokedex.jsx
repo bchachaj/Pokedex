@@ -4,15 +4,17 @@ import { receiveAllPokemon, requestAllPokemon } from './actions/pokemon_actions.
 import * as ApiUtil from './util/api_util';
 import configureStore from './store/store';
 import { selectAllPokemon } from './reducers/selectors';
+import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
   window.receiveAllPokemon = receiveAllPokemon;
   window.requestAllPokemon = requestAllPokemon;
   window.selectAllPokemon = selectAllPokemon;
   window.fetchAllPokemon = ApiUtil.fetchAllPokemon;
-  window.store = configureStore();
+  const store = configureStore();
+  window.store = store;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   const rootEl = document.getElementById('root');
-  ReactDOM.render(<h1>Pokedex </h1>, rootEl);
+  ReactDOM.render(<Root store={store}/>, rootEl);
 });
