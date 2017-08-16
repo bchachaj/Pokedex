@@ -23610,7 +23610,7 @@ var pokemonReducer = exports.pokemonReducer = function pokemonReducer() {
 
   switch (action.type) {
     case _pokemon_actions.RECEIVE_ALL_POKEMON:
-      return Object.assign({}, state, action.pokemon);
+      return Object.merge({}, state, action.pokemon);
     default:
       return state;
   }
@@ -42166,22 +42166,24 @@ var PokemonIndex = function (_React$Component) {
   }
 
   _createClass(PokemonIndex, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestAllPokemon();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var pokemons = this.props.pokemon.map(function (el) {
         return _react2.default.createElement(
-          'li',
+          "li",
           { key: el.id },
-          el.name
+          el.name,
+          " ",
+          _react2.default.createElement("img", { className: "pokeImg", src: el.image_url })
         );
       });
       return _react2.default.createElement(
-        'ul',
+        "ul",
         null,
         pokemons
       );
